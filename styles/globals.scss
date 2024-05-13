@@ -2,3 +2,13 @@
 
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";
+
+.btn-black {
+  @include button-variant(
+    $background: $black,
+    $border: $black,
+    $hover-background: $white
+  );
+
+  font-weight: 700 !important;
+}
