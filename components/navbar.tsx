@@ -20,7 +20,9 @@ export default function Navbar() {
               <NavDropdown.Item as={Link} href="/">
                 List
               </NavDropdown.Item>
-              <NavDropdown.Item href="">By Location</NavDropdown.Item>
+              <NavDropdown.Item as={Link} href="/locations">
+                Locations
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </BootstrapNavbar.Collapse>

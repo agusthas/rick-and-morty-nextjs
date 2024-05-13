@@ -1,6 +1,10 @@
+import LocationInputModal from "@/components/location-input-modal";
 import { gql } from "@/graphql/__generated__";
+import { locationListState } from "@/lib/atoms";
 import { useQuery } from "@apollo/client";
-import { Alert, Badge } from "react-bootstrap";
+import { useState } from "react";
+import { Alert, Badge, Button, Form } from "react-bootstrap";
+import { useRecoilState } from "recoil";
 
 const GET_CHARACTER = gql(`
   query GetCharacter($id: ID!) {
@@ -25,6 +29,9 @@ export default function CharacterDetail({ id }: { id: string }) {
   const { loading, error, data } = useQuery(GET_CHARACTER, {
     variables: { id },
   });
+  const [show, setShow] = useState(false);
+  const [locationList] = useRecoilState(locationListState);
+  const characterLocation = locationList.find((loc) => loc.id === id);
 
   return (
     <>
@@ -33,7 +40,25 @@ export default function CharacterDetail({ id }: { id: string }) {
       {data && data.character && (
         <div>
           <h1 className="fw-bold lh-1">{data.character.name}</h1>
-          <Alert variant="light">Location: Not yet set</Alert>
+          {characterLocation ? (
+            <Alert variant="light">
+              Location: {characterLocation.location}
+              <Button className="btn-black ms-3" onClick={() => setShow(true)}>
+                Change
+              </Button>
+            </Alert>
+          ) : (
+            <Button className="btn-black" onClick={() => setShow(true)}>
+              Assign Location
+            </Button>
+          )}
+          <LocationInputModal
+            characterName={data.character!.name!}
+            id={id}
+            setShow={setShow}
+            show={show}
+            initialValue={characterLocation?.location}
+          />
           <div className="d-flex align-items-center gap-4 mt-4">
             <div>
               <div className="text-secondary mb-0 fw-medium">Species</div>
