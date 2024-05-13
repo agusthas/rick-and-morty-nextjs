@@ -9,7 +9,7 @@ export default function Home() {
       <Head>
         <title>R&M's | Characters</title>
       </Head>
-      <section className="container py-3">
+      <section className="py-3">
         <h1 className="fw-bold m-0 lh-1">Characters</h1>
         <ClientOnly>
           <Characters />

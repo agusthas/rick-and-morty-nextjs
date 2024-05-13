@@ -10,10 +10,7 @@ export default function CharacterDetailPage() {
 
   return (
     <Layout>
-      <section className="container py-3">
-        <Link href="/" className="mb-2 d-block">
-          See all characters
-        </Link>
+      <section className="py-3">
         <ClientOnly>
           <CharacterDetail id={id} />
         </ClientOnly>

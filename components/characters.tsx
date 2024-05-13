@@ -11,7 +11,6 @@ const GET_ALL_CHARACTERS = gql(`
       results {
         id
         name
-        image
       }
     }
   }
@@ -30,16 +29,15 @@ export default function Characters() {
         data.characters &&
         data.characters.results &&
         data.characters.results.length > 0 && (
-          <div className="row row-cols-2 row-cols-md-4 row-cols-lg-6 py-4 g-2">
+          <div className="row row-cols-1 row-cols-sm-2 py-4 g-2">
             {data.characters.results.map((character) => (
               <CharacterCard
                 key={character!.id}
                 name={character!.name!}
-                image={character!.image!}
                 link={`/characters/${character!.id}`}
               />
             ))}
-            <div className="col-12 d-flex justify-content-center mt-4">
+            <div className="col-12 mt-4">
               <button
                 className="btn btn-black"
                 onClick={() => {

@@ -8,7 +8,7 @@ import {
 
 export default function Navbar() {
   return (
-    <BootstrapNavbar collapseOnSelect expand="lg" bg="black" variant="dark">
+    <BootstrapNavbar collapseOnSelect expand="lg">
       <Container fluid>
         <BootstrapNavbar.Brand as={Link} href="/" className="mb-0 h1">
           Rick and Morty's
